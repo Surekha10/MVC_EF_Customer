@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MVC_EF6_Example.Models.CustomerModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div align="center">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "container", @style = "text-align:left;width:30%;" }))
+        {
+            <div class="form-group">
+                <label class="form-control-static">Search Key :</label>
+                <input type="text" id="key" name="key" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn-danger" />
+            </div>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerEmailID)
+                </th>
+                <th></th>
+                
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerPassword)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerEmailID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerDetails)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View Details", "Find", "Home", new { id = item.CustomerID },null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</body>
+</html>
